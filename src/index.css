@@ -1,0 +1,49 @@
+@import "tailwindcss";
+
+@theme {
+  --font-serif: "Fraunces", Georgia, serif;
+  --font-sans: "Plus Jakarta Sans", system-ui, sans-serif;
+  --font-mono: "DM Mono", ui-monospace, monospace;
+  --color-paper: #FFF8F2;
+  --color-ink: #2B2233;
+  --color-muted: #6E6478;
+  --color-faint: #8A7F92;
+  --color-line: #F1E4DA;
+  --color-rose: #C2456E;
+  --color-rose-dark: #A8345B;
+  --color-sea: #D3E9EF;
+}
+
+@layer base {
+  html { scroll-behavior: smooth; }
+  body { @apply bg-paper text-ink font-sans antialiased; }
+}
+
+@utility eyebrow {
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+}
+
+@utility no-scrollbar {
+  scrollbar-width: none;
+  &::-webkit-scrollbar { display: none; }
+}
+
+.map-label { text-shadow: 0 0 2px #fff, 0 0 4px rgba(255,255,255,.9); }
+
+@keyframes fade-up { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+@keyframes fade-in { from { opacity: .2; transform: scale(1.02); } to { opacity: 1; transform: none; } }
+@keyframes pulse-ring { from { transform: scale(.4); opacity: 1; } to { transform: scale(1.8); opacity: 0; } }
+@keyframes twinkle { 0%,100% { transform: rotate(0) scale(1); } 50% { transform: rotate(20deg) scale(1.15); } }
+.anim-fade-up { animation: fade-up .5s ease both; }
+.anim-fade-in { animation: fade-in .45s ease both; }
+.anim-pulse-ring { animation: pulse-ring 1.8s ease-out infinite; }
+.anim-twinkle { animation: twinkle 2.4s ease-in-out infinite; }
+@keyframes march { to { stroke-dashoffset: -60; } }
+
+@media (prefers-reduced-motion: reduce) {
+  .anim-fade-up, .anim-fade-in, .anim-pulse-ring, .anim-twinkle { animation: none; }
+  html { scroll-behavior: auto; }
+}
